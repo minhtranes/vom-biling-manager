@@ -26,7 +26,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-@Table(name = "vom_invoices")
+@Table(name = "vom_invoices_bak")
 @Access(AccessType.PROPERTY)
 public class InvoiceEntity implements Serializable {
     

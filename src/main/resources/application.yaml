@@ -1,2 +1,16 @@
 server:
     port: 8082
+spring:
+    datasource:
+        name: store-rdbms-db-44-cdipp-trid
+        url: jdbc:sqlserver://192.168.56.2:1433;databaseName=VOM;SendStringParametersAsUnicode=false
+        username: vomapp
+        password: admin
+        driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+        platform: mssql
+        initialization-mode: always
+        continue-on-error: true
+        jpa:
+            generate-ddl: true
+            hibernate.ddl-auto: none
+            show-sql: true
