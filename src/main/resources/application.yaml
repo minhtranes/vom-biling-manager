@@ -1,5 +1,5 @@
 server:
-    port: 8281
+    port: 8280
 spring:
     datasource:
         name: store-rdbms-db-44-cdipp-trid

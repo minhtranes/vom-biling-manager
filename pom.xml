@@ -11,7 +11,7 @@
     </parent>
     <groupId>vn.minhtran.vom</groupId>
     <artifactId>vom-biling-manager</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1.1</version>
     <name>vom-biling-manager</name>
     <description>Manage invoice and expose invoice services</description>
 
