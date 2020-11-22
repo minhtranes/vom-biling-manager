@@ -1,0 +1,24 @@
+2020-11-22 08:15:28.161  INFO 18456 --- [main] v.m.vom.vbm.VOMBilingManagerApplication  : Starting VOMBilingManagerApplication using Java 1.8.0_181 on 201802LAP0067 with PID 18456 (C:\Users\thminh_1\Workspace\Projects\BTGF\vom-biling-manager\target\classes started by thminh_1 in C:\Users\thminh_1\Workspace\Projects\BTGF\vom-biling-manager)
+2020-11-22 08:15:28.163  INFO 18456 --- [main] v.m.vom.vbm.VOMBilingManagerApplication  : The following profiles are active: default
+2020-11-22 08:15:28.927  INFO 18456 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2020-11-22 08:15:28.990  INFO 18456 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 53 ms. Found 1 JPA repository interfaces.
+2020-11-22 08:15:29.743  INFO 18456 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8280 (http)
+2020-11-22 08:15:29.753  INFO 18456 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-11-22 08:15:29.753  INFO 18456 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.39]
+2020-11-22 08:15:29.828  INFO 18456 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-11-22 08:15:29.829  INFO 18456 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1622 ms
+2020-11-22 08:15:30.139  INFO 18456 --- [main] com.zaxxer.hikari.HikariDataSource       : store-rdbms - Starting...
+2020-11-22 08:15:30.657  INFO 18456 --- [main] com.zaxxer.hikari.HikariDataSource       : store-rdbms - Start completed.
+2020-11-22 08:15:30.744  INFO 18456 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-11-22 08:15:30.795  INFO 18456 --- [task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-11-22 08:15:30.869  INFO 18456 --- [task-1] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.23.Final
+2020-11-22 08:15:30.890  WARN 18456 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-11-22 08:15:31.059  INFO 18456 --- [task-1] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2020-11-22 08:15:31.256  INFO 18456 --- [task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.SQLServer2012Dialect
+2020-11-22 08:15:31.335  INFO 18456 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2020-11-22 08:15:31.968  INFO 18456 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-11-22 08:15:31.976  INFO 18456 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-11-22 08:15:32.006  INFO 18456 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8280 (http) with context path ''
+2020-11-22 08:15:32.008  INFO 18456 --- [main] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2020-11-22 08:15:32.501  INFO 18456 --- [main] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2020-11-22 08:15:32.511  INFO 18456 --- [main] v.m.vom.vbm.VOMBilingManagerApplication  : Started VOMBilingManagerApplication in 4.739 seconds (JVM running for 5.094)

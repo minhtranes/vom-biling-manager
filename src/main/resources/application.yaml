@@ -1,22 +1,6 @@
-server:
-    port: 8280
 spring:
-    datasource:
-        name: store-rdbms-db-44-cdipp-trid
-        url: jdbc:sqlserver://192.168.56.2:1433;databaseName=VOM;SendStringParametersAsUnicode=false
-        username: vomapp
-        password: admin
-        driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
-        platform: mssql
-        initialization-mode: ALWAYS
-        continue-on-error: true
-        jpa:
-            generate-ddl: true
-            hibernate:
-                ddl-auto: none
-                dialect: org.hibernate.dialect.SQLServer2005Dialect
-            show-sql: true
-    jackson.serialization.write_dates_as_timestamps: false
+    profiles:
+        active: default
 
 management:
     endpoints.enabled-by-default: true
