@@ -14,7 +14,22 @@ package vn.minhtran.vom.vbm.model;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
+import com.fasterxml.jackson.annotation.JsonSetter;
+
 public class Invoice {
+
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public Invoice id(int id) {
+        this.id = id;
+        return this;
+    }
 
     private String invoiceId;
 
@@ -32,8 +47,10 @@ public class Invoice {
         return sheetName;
     }
 
+    @JsonFormat(shape = Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
     private LocalDateTime checkInDate;
 
+    @JsonFormat(shape = Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
     private LocalDateTime checkOutDate;
 
     private Integer totalAmount;
@@ -42,20 +59,21 @@ public class Invoice {
 
     private Integer remainAmount;
 
+    @JsonSetter(value = "link")
     private String pdfLink;
 
     private LocalDateTime createdTime;
 
     private LocalDateTime lastModifiedTime;
-    
-    private String[] items;
-    
-    public String[] getItems() {
+
+    private Item[] items;
+
+    public Item[] getItems() {
         return items;
     }
-    
-    public Invoice items(String[] items) {
-        this.items=items;
+
+    public Invoice items(Item[] items) {
+        this.items = items;
         return this;
     }
 

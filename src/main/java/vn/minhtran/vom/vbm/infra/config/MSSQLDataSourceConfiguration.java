@@ -13,6 +13,7 @@
 package vn.minhtran.vom.vbm.infra.config;
 
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
+import org.springframework.boot.autoconfigure.orm.jpa.HibernateProperties;
 import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -25,14 +26,21 @@ public class MSSQLDataSourceConfiguration {
     @Bean
     @Primary
     @ConfigurationProperties(prefix = "spring.datasource")
-    DataSourceProperties mssqlDataSource() {
+    DataSourceProperties dataSourceProperties() {
         return new DataSourceProperties();
     }
 
     @Bean
     @Primary
     @ConfigurationProperties(prefix = "spring.datasource.jpa")
-    JpaProperties msssqlJPAProperties() {
+    JpaProperties jpaProperties() {
         return new JpaProperties();
+    }
+    
+    @Bean
+    @Primary
+    @ConfigurationProperties(prefix = "spring.datasource.jpa.hibernate")
+    HibernateProperties msssqlHibernateProperties() {
+        return new HibernateProperties();
     }
 }

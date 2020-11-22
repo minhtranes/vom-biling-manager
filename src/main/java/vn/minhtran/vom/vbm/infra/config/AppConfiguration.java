@@ -1,7 +1,7 @@
 /*
- * Class: InvoiceService
+ * Class: AppConfiguration
  *
- * Created on Nov 13, 2020
+ * Created on Nov 15, 2020
  *
  * (c) Copyright Swiss Post Solutions Ltd, unpublished work
  * All use, disclosure, and/or reproduction of this material is prohibited
@@ -10,13 +10,12 @@
  * Swiss Post Solution.
  * Floor 4-5-8, ICT Tower, Quang Trung Software City
  */
-package vn.minhtran.vom.vbm.application.services;
+package vn.minhtran.vom.vbm.infra.config;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
+import org.springframework.context.annotation.Configuration;
 
-import vn.minhtran.vom.vbm.model.Invoice;
+@Configuration
+public class AppConfiguration {
 
-public interface InvoiceService {
-
-    Invoice store(Invoice invoice) throws JsonProcessingException;
+    
 }

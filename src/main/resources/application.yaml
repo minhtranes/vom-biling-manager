@@ -1,5 +1,5 @@
 server:
-    port: 8280
+    port: 8281
 spring:
     datasource:
         name: store-rdbms-db-44-cdipp-trid
@@ -8,9 +8,16 @@ spring:
         password: admin
         driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
         platform: mssql
-        initialization-mode: always
+        initialization-mode: ALWAYS
         continue-on-error: true
         jpa:
             generate-ddl: true
-            hibernate.ddl-auto: none
+            hibernate:
+                ddl-auto: none
+                dialect: org.hibernate.dialect.SQLServer2005Dialect
             show-sql: true
+    jackson.serialization.write_dates_as_timestamps: false
+
+management:
+    endpoints.enabled-by-default: true
+    endpoint.beans.enabled: true

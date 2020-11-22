@@ -12,10 +12,9 @@
  */
 package vn.minhtran.vom.vbm.infra.entity;
 
-import javax.persistence.Table;
-
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
@@ -24,12 +23,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "vom_invoices_bak")
 @Access(AccessType.PROPERTY)
 public class InvoiceEntity implements Serializable {
-    
+
     private static final long serialVersionUID = -3228223901723345675L;
 
     private Integer id;
@@ -40,9 +40,9 @@ public class InvoiceEntity implements Serializable {
 
     private String guestName;
 
-    private LocalDateTime checkInDate;
+    private OffsetDateTime checkInDate;
 
-    private LocalDateTime checkOutDate;
+    private OffsetDateTime checkOutDate;
 
     private String country;
 
@@ -98,20 +98,20 @@ public class InvoiceEntity implements Serializable {
     }
 
     @Column(name = "check_in_date")
-    public LocalDateTime getCheckInDate() {
+    public OffsetDateTime getCheckInDate() {
         return checkInDate;
     }
 
-    public void setCheckInDate(LocalDateTime checkInDate) {
+    public void setCheckInDate(OffsetDateTime checkInDate) {
         this.checkInDate = checkInDate;
     }
 
     @Column(name = "check_out_date")
-    public LocalDateTime getCheckOutDate() {
+    public OffsetDateTime getCheckOutDate() {
         return checkOutDate;
     }
 
-    public void setCheckOutDate(LocalDateTime checkOutDate) {
+    public void setCheckOutDate(OffsetDateTime checkOutDate) {
         this.checkOutDate = checkOutDate;
     }
 
@@ -169,7 +169,7 @@ public class InvoiceEntity implements Serializable {
         this.pdfLink = pdfLink;
     }
 
-    @Column(name = "created_time")
+    @Column(name = "created_time", insertable = false, updatable = false)
     public LocalDateTime getCreatedTime() {
         return createdTime;
     }
@@ -178,7 +178,7 @@ public class InvoiceEntity implements Serializable {
         this.createdTime = createdTime;
     }
 
-    @Column(name = "last_modified_time")
+    @Column(name = "last_modified_time", insertable = false, updatable = false)
     public LocalDateTime getLastModifiedTime() {
         return lastModifiedTime;
     }

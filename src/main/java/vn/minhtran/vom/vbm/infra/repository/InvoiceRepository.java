@@ -20,5 +20,6 @@ import vn.minhtran.vom.vbm.infra.entity.InvoiceEntity;
 @Repository
 public interface InvoiceRepository
         extends JpaRepository<InvoiceEntity, Integer> {
-
+    
+    InvoiceEntity findOneByName(String name);
 }
