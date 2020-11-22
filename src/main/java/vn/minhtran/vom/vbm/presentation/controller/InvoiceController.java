@@ -14,6 +14,8 @@ package vn.minhtran.vom.vbm.presentation.controller;
 
 import javax.annotation.PostConstruct;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,6 +34,9 @@ import vn.minhtran.vom.vbm.model.SaveInvoiceResponse;
 @RequestMapping("/vom")
 public class InvoiceController {
 
+    private static final Logger LOGGER = LoggerFactory
+        .getLogger(InvoiceController.class);
+
     @Autowired
     private InvoiceService invoiceService;
 
@@ -46,7 +51,13 @@ public class InvoiceController {
     @PostMapping("/invoice")
     public SaveInvoiceResponse save(@RequestBody Invoice invoice)
             throws JsonProcessingException {
+        LOGGER
+            .info("Start process invoice save request [{}]", invoice.getName());
         Invoice i = invoiceService.store(invoice);
-        return SaveInvoiceResponse.from(i);
+        SaveInvoiceResponse res = SaveInvoiceResponse.from(i);
+        LOGGER.info(
+            "Complete process invoice save request [{}]",
+            invoice.getName());
+        return res;
     }
 }
