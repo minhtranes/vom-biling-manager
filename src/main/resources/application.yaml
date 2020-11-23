@@ -1,7 +1,6 @@
 spring:
     profiles:
         active: default
-
 management:
     endpoints.enabled-by-default: true
     endpoint.beans.enabled: true
