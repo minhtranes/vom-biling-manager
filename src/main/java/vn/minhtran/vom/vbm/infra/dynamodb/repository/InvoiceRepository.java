@@ -13,14 +13,14 @@
 package vn.minhtran.vom.vbm.infra.dynamodb.repository;
 
 import org.socialsignin.spring.data.dynamodb.repository.EnableScan;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 
 import vn.minhtran.vom.vbm.infra.dynamodb.entity.InvoiceEntity;
 
 
 @EnableScan
 public interface InvoiceRepository
-        extends JpaRepository<InvoiceEntity, Integer> {
+        extends CrudRepository<InvoiceEntity, String> {
     
     InvoiceEntity findOneByName(String name);
 }

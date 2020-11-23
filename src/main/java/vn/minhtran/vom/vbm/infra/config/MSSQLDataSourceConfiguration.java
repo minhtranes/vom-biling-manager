@@ -19,7 +19,11 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
+import vn.minhtran.vom.vbm.infra.repository.InvoiceRepository;
+
+@EnableJpaRepositories(basePackageClasses = { InvoiceRepository.class })
 @Configuration
 public class MSSQLDataSourceConfiguration {
 
@@ -36,7 +40,7 @@ public class MSSQLDataSourceConfiguration {
     JpaProperties jpaProperties() {
         return new JpaProperties();
     }
-    
+
     @Bean
     @Primary
     @ConfigurationProperties(prefix = "spring.datasource.jpa.hibernate")

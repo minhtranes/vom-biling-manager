@@ -16,9 +16,15 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.ZoneOffset;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import com.amazonaws.services.dynamodbv2.model.CreateTableRequest;
+import com.amazonaws.services.dynamodbv2.model.ProvisionedThroughput;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -32,6 +38,19 @@ public class DefaultInvoiceService implements InvoiceService {
 
     @Autowired
     private InvoiceRepository repository;
+    
+    @Autowired
+    private AmazonDynamoDB amazonDynamoDB;
+    
+    @PostConstruct
+    void initDynamo() {
+        DynamoDBMapper dynamoDBMapper = new DynamoDBMapper(amazonDynamoDB);
+        CreateTableRequest tableRequest = dynamoDBMapper
+                .generateCreateTableRequest(vn.minhtran.vom.vbm.infra.dynamodb.entity.InvoiceEntity.class);
+              tableRequest.setProvisionedThroughput(
+                new ProvisionedThroughput(1L, 1L));
+              amazonDynamoDB.createTable(tableRequest);
+    }
 
     @Override
     public Invoice store(Invoice invoice) throws JsonProcessingException {
