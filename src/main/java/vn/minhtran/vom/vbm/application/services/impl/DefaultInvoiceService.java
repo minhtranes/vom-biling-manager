@@ -18,6 +18,8 @@ import java.time.ZoneOffset;
 
 import javax.annotation.PostConstruct;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,20 +38,29 @@ import vn.minhtran.vom.vbm.model.Invoice;
 @Service
 public class DefaultInvoiceService implements InvoiceService {
 
+    private static final Logger LOGGER = LoggerFactory
+        .getLogger(DefaultInvoiceService.class);
+
     @Autowired
     private InvoiceRepository repository;
-    
+
     @Autowired
     private AmazonDynamoDB amazonDynamoDB;
-    
+
     @PostConstruct
     void initDynamo() {
-        DynamoDBMapper dynamoDBMapper = new DynamoDBMapper(amazonDynamoDB);
-        CreateTableRequest tableRequest = dynamoDBMapper
-                .generateCreateTableRequest(vn.minhtran.vom.vbm.infra.dynamodb.entity.InvoiceEntity.class);
-              tableRequest.setProvisionedThroughput(
-                new ProvisionedThroughput(1L, 1L));
-              amazonDynamoDB.createTable(tableRequest);
+        try {
+            DynamoDBMapper dynamoDBMapper = new DynamoDBMapper(amazonDynamoDB);
+            CreateTableRequest tableRequest = dynamoDBMapper
+                .generateCreateTableRequest(
+                    vn.minhtran.vom.vbm.infra.dynamodb.entity.InvoiceEntity.class);
+            tableRequest
+                .setProvisionedThroughput(new ProvisionedThroughput(1L, 1L));
+            amazonDynamoDB.createTable(tableRequest);
+        }
+        catch (Exception e) {
+            LOGGER.error("Failed to create table", e);
+        }
     }
 
     @Override
@@ -59,7 +70,8 @@ public class DefaultInvoiceService implements InvoiceService {
         if (invoiceEntity == null) {
             invoiceEntity = new InvoiceEntity();
         }
-        DateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+        DateFormat dateFormat = new SimpleDateFormat(
+            "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
         objectMapper.setDateFormat(dateFormat);
         updateEntity(invoice, invoiceEntity, objectMapper);
         InvoiceEntity inv = repository.save(invoiceEntity);
@@ -67,9 +79,9 @@ public class DefaultInvoiceService implements InvoiceService {
     }
 
     private Invoice toModel(InvoiceEntity en) {
-        return Invoice.invoiceId(en.getName())
-            .createdTime(en.getCreatedTime()).id(en.getId())
-            .lastModifiedTime(en.getLastModifiedTime()).name(en.getGuestName());
+        return Invoice.invoiceId(en.getName()).createdTime(en.getCreatedTime())
+            .id(en.getId()).lastModifiedTime(en.getLastModifiedTime())
+            .name(en.getGuestName());
     }
 
     @Autowired
