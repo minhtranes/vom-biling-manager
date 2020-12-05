@@ -49,36 +49,40 @@ public class DefaultInvoiceService implements InvoiceService {
 
     @PostConstruct
     void initDynamo() {
+
+        final DynamoDBMapper dynamoDBMapper = new DynamoDBMapper(
+            this.amazonDynamoDB);
+        final CreateTableRequest tableRequest = dynamoDBMapper
+            .generateCreateTableRequest(
+                vn.minhtran.vom.vbm.infra.dynamodb.entity.InvoiceEntity.class);
         try {
-            DynamoDBMapper dynamoDBMapper = new DynamoDBMapper(amazonDynamoDB);
-            CreateTableRequest tableRequest = dynamoDBMapper
-                .generateCreateTableRequest(
-                    vn.minhtran.vom.vbm.infra.dynamodb.entity.InvoiceEntity.class);
             tableRequest
                 .setProvisionedThroughput(new ProvisionedThroughput(1L, 1L));
-            amazonDynamoDB.createTable(tableRequest);
+            this.amazonDynamoDB.createTable(tableRequest);
         }
-        catch (Exception e) {
-            LOGGER.error("Failed to create table", e);
+        catch (final Exception e) {
+            DefaultInvoiceService.LOGGER.warn(
+                "Failed to create table [{}]",
+                tableRequest.getTableName());
         }
     }
 
     @Override
-    public Invoice store(Invoice invoice) throws JsonProcessingException {
-        String invoiceId = invoice.getInvoiceId();
-        InvoiceEntity invoiceEntity = repository.findOneByName(invoiceId);
+    public Invoice store(final Invoice invoice) throws JsonProcessingException {
+        final String invoiceId = invoice.getInvoiceId();
+        InvoiceEntity invoiceEntity = this.repository.findOneByName(invoiceId);
         if (invoiceEntity == null) {
             invoiceEntity = new InvoiceEntity();
         }
-        DateFormat dateFormat = new SimpleDateFormat(
+        final DateFormat dateFormat = new SimpleDateFormat(
             "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-        objectMapper.setDateFormat(dateFormat);
-        updateEntity(invoice, invoiceEntity, objectMapper);
-        InvoiceEntity inv = repository.save(invoiceEntity);
-        return toModel(inv);
+        this.objectMapper.setDateFormat(dateFormat);
+        updateEntity(invoice, invoiceEntity, this.objectMapper);
+        final InvoiceEntity inv = this.repository.save(invoiceEntity);
+        return this.toModel(inv);
     }
 
-    private Invoice toModel(InvoiceEntity en) {
+    private Invoice toModel(final InvoiceEntity en) {
         return Invoice.invoiceId(en.getName()).createdTime(en.getCreatedTime())
             .id(en.getId()).lastModifiedTime(en.getLastModifiedTime())
             .name(en.getGuestName());
@@ -88,9 +92,9 @@ public class DefaultInvoiceService implements InvoiceService {
     private ObjectMapper objectMapper;
 
     private static void updateEntity(
-        Invoice i,
-        InvoiceEntity en,
-        ObjectMapper objectMapper) throws JsonProcessingException {
+        final Invoice i,
+        final InvoiceEntity en,
+        final ObjectMapper objectMapper) throws JsonProcessingException {
         en.setName(i.getInvoiceId());
         en.setGuestName(i.getName());
         en.setCheckInDate(i.getCheckInDate().atOffset(ZoneOffset.UTC));
