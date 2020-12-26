@@ -61,7 +61,7 @@ public class DefaultInvoiceService implements InvoiceService {
             this.amazonDynamoDB.createTable(tableRequest);
         }
         catch (final Exception e) {
-            DefaultInvoiceService.LOGGER.warn(
+            LOGGER.warn(
                 "Failed to create table [{}]",
                 tableRequest.getTableName());
         }
