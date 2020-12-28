@@ -10,12 +10,12 @@
  * Swiss Post Solution.
  * Floor 4-5-8, ICT Tower, Quang Trung Software City
  */
-package vn.minhtran.vom.vbm.infra.repository;
+package vn.minhtran.vom.vbm.infra.mssql.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import vn.minhtran.vom.vbm.infra.entity.InvoiceEntity;
+import vn.minhtran.vom.vbm.infra.mssql.entity.InvoiceEntity;
 
 @Repository
 public interface InvoiceRepository

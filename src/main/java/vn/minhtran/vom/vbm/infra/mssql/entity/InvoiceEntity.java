@@ -10,7 +10,7 @@
  * Swiss Post Solution.
  * Floor 4-5-8, ICT Tower, Quang Trung Software City
  */
-package vn.minhtran.vom.vbm.infra.entity;
+package vn.minhtran.vom.vbm.infra.mssql.entity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;

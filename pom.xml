@@ -11,7 +11,7 @@
     </parent>
     <groupId>vn.minhtran.vom</groupId>
     <artifactId>vom-biling-manager</artifactId>
-    <version>0.0.1.2</version>
+    <version>1.0.1.3</version>
     <name>vom-biling-manager</name>
     <description>Manage invoice and expose invoice services</description>
 
@@ -36,6 +36,10 @@
             <groupId>com.microsoft.sqlserver</groupId>
             <artifactId>mssql-jdbc</artifactId>
             <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
         </dependency>
         <dependency>
             <groupId>com.amazonaws</groupId>

@@ -172,8 +172,18 @@ public class Invoice {
         return this;
     }
 
+    public Invoice createdTime(String createdTime) {
+        this.createdTime = LocalDateTime.parse(createdTime);
+        return this;
+    }
+
     public Invoice lastModifiedTime(LocalDateTime lastModifiedTime) {
         this.lastModifiedTime = lastModifiedTime;
+        return this;
+    }
+    
+    public Invoice lastModifiedTime(String lastModifiedTime) {
+        this.lastModifiedTime = LocalDateTime.parse(lastModifiedTime);
         return this;
     }
 
