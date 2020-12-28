@@ -21,7 +21,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-import vn.minhtran.vom.vbm.infra.repository.InvoiceRepository;
+import vn.minhtran.vom.vbm.infra.mssql.repository.InvoiceRepository;
 
 @EnableJpaRepositories(basePackageClasses = { InvoiceRepository.class })
 @Configuration

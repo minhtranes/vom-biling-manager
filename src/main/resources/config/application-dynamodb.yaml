@@ -1,8 +1,4 @@
-server:
-    port: 8280
 spring:
-    profiles:
-        active: dynamodb
     datasource:
         name: store-rdbms
         url: jdbc:h2:mem:testdb
@@ -19,12 +15,6 @@ spring:
                 dialect: org.hibernate.dialect.H2Dialect
             show-sql: true
     jackson.serialization.write_dates_as_timestamps: false
-management:
-    endpoints.enabled-by-default: true
-    endpoint.beans.enabled: true
-logging:
-    file:
-        name: ./logs/vom-billing-manager.log
         
 amazon:
     dynamodb.endpoint: dynamodb.ap-northeast-1.amazonaws.com

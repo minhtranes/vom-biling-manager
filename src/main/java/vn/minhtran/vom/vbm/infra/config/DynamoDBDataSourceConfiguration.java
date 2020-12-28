@@ -12,16 +12,23 @@
  */
 package vn.minhtran.vom.vbm.infra.config;
 
+import org.socialsignin.spring.data.dynamodb.repository.config.EnableDynamoDBRepositories;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
 
+import vn.minhtran.vom.vbm.infra.dynamodb.repository.InvoiceRepository;
+
+
 @Configuration
+@Profile("dynamodb")
+@EnableDynamoDBRepositories(basePackageClasses = {InvoiceRepository.class})
 public class DynamoDBDataSourceConfiguration {
 
     @Bean
